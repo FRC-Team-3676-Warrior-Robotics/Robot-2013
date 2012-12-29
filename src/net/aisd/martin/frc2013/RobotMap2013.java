@@ -37,7 +37,7 @@ public final class RobotMap2013 {
      */
     public static final class Input{
         private Input(){}
-        public static final int joystick1 = INVALID;
+        public static final int joystick1 = 1;
         public static final int joystick2 = UNUSED;
     }
     
@@ -61,8 +61,8 @@ public final class RobotMap2013 {
      * Contains the slot and channel of all the compressor pnuematic hardware
      */
     
-    public static final class Pnumatics{
-        private Pnumatics() {}
+    public static final class Pneumatics{
+        private Pneumatics() {}
         //Slot that pnumatics are located in
         public static final int slot = INVALID;
         //Channels

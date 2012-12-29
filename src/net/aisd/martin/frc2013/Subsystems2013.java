@@ -13,12 +13,20 @@ package net.aisd.martin.frc2013;
 public class Subsystems2013 {
     //Variables that holds all of our subsystems
     //None beyond the basics because we don't have a robot
-	Pneumatics pneumatics;
+	public static Pneumatics pneumatics;
+	public static DriveTrain driveTrain;
+	public static Controller controller1;
 	
     /*
      * This instantiates all the robots subsystems. Will probably be called in the
      * robot main's constuctor
      */
     public static void init() {
+		pneumatics = new Pneumatics();
+		controller1 = new Controller(RobotMap2013.Input.joystick1);
+		driveTrain = new DriveTrain(RobotMap2013.DriveMotors.slot,
+									RobotMap2013.DriveMotors.left_front,
+									RobotMap2013.DriveMotors.right_front,
+									controller1);
     }
 }

@@ -11,15 +11,28 @@ import net.aisd.martin.frc.AISDCompressor;
  * @author Neil
  */
 public class Pneumatics {
-	private AISDCompressor compressor;
-	
+	public AISDCompressor compressor;
+	public DriveTrain driveTrain;
 	/**
 	 * This constructor uses the built in constants to find the slots and channels
-	 * I dont see us using another one but just right it if you need it
+	 * I dont see us using another one but just write it if you need it
 	 */
 	public Pneumatics(){
-		this.compressor = new AISDCompressor(RobotMap2013.Pnumatics.slot, RobotMap2013.Pnumatics.pressure_switch,
-											 RobotMap2013.Pnumatics.slot, RobotMap2013.Pnumatics.compressor);
+		this.compressor = new AISDCompressor(RobotMap2013.Pneumatics.slot, RobotMap2013.Pneumatics.pressure_switch,
+											 RobotMap2013.Pneumatics.slot, RobotMap2013.Pneumatics.compressor);
 		//Put any other hardware here
+	}
+	
+	/*
+	 * Anything in this class that needs to be updated each by the main thread 
+	 * will go in this method. Will be called in the Team3676Robot operator control
+	 * loop
+	 * @param none
+	 */
+	public void tick(){
+		/*
+		 * TODO: none currently in fact this class is useless unless we use 
+		 * pneumatics
+		 */
 	}
 }
