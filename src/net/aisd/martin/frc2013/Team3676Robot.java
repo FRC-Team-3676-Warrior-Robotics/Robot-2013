@@ -41,6 +41,11 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
+        while(isOperatorControl() && isEnabled()) {
+            driveTrain.tick();
+            pneumatics.tick();
+            }
+        }
 
     }
 }
