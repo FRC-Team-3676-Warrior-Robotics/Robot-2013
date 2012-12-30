@@ -26,4 +26,52 @@ class Controller {
 	 * false depending on the button
 	 */
 	
+	/**
+	 * These methods return either their raw value or a squared value which is
+	 * useful in some cases
+	 */
+	public double getLeftYAxis(boolean squared){
+		if(!squared)
+			return joystick1.getRawAxis(2);
+		if(joystick1.getRawAxis(2) < 0)
+			return -(joystick1.getRawAxis(2) * joystick1.getRawAxis(2));
+		else
+			return joystick1.getRawAxis(2) * joystick1.getRawAxis(2);
+	}
+	
+	public double getLeftXAxis(boolean squared){
+		if(!squared)
+			return joystick1.getRawAxis(1);
+		if(joystick1.getRawAxis(1) < 0)
+			return -(joystick1.getRawAxis(1) * joystick1.getRawAxis(1));
+		else
+			return joystick1.getRawAxis(1) * joystick1.getRawAxis(1);
+	}
+	
+	public double getRightYAxis(boolean squared){
+		if(!squared)
+			return joystick1.getRawAxis(5);
+		if(joystick1.getRawAxis(5) < 0)
+			return -(joystick1.getRawAxis(5) * joystick1.getRawAxis(5));
+		else
+			return joystick1.getRawAxis(5) * joystick1.getRawAxis(5);
+	}
+	
+	public double getRightXAxis(boolean squared){
+		if(!squared)
+			return joystick1.getRawAxis(4);
+		if(joystick1.getRawAxis(4) < 0)
+			return -(joystick1.getRawAxis(4) * joystick1.getRawAxis(4));
+		else
+			return joystick1.getRawAxis(4) * joystick1.getRawAxis(4);
+	}
+	
+	public boolean getLeftAxisButton(){
+		return joystick1.getRawButton(3);
+	}
+	
+	public boolean getRightAxisButton(){
+		return joystick1.getRawButton(6);
+	}
+	
 }

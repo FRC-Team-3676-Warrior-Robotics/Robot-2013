@@ -22,7 +22,7 @@ public class DriveTrain {
 	//These are our speed controllers. Will change what they equal when we need to move
 	private Jaguar left;
 	private Jaguar right;
-	private Controller contoller;
+	private Controller controller;
 	
 	/**
 	 * Creates a two wheel drive train
@@ -38,7 +38,7 @@ public class DriveTrain {
 		this.left = new Jaguar(slot, left);
 		this.right = new Jaguar(slot, right);
 		
-		this.contoller = controller;
+		this.controller = controller;
 	}
 	
 	/*
@@ -48,10 +48,33 @@ public class DriveTrain {
 	 * @param none
 	 */
 	public void tick(){
+		double forwardValue = controller.getLeftYAxis(true);
+		double rotationValue = controller.getLeftXAxis(true);
+		
 		/**
-		* TODO: Set all of the motor values to their corresponding input or what
-		* have you. We do not need to worry about null's since our input class
-		* will handle that for us
+		* TODO: Decide whether we want arcade or tank drive and erase the other 
+		* code. Committing both so we can go back if we need to
+		* 
 		*/
+		
+		//Implementing a tank drive
+		left.set(controller.getLeftYAxis(true));
+		right.set(controller.getRightYAxis(true));
+		
+		//Implementing a Arcade drive
+		/**
+		 * This one gets more complex we need to find the "Rotation value" and also
+		 * the speed value and set them accordingly. Will take fine tuning
+		 * Borrowed this code from FRC. We don't need to customize it yet or 
+		 * hopefully ever cause I'm pretty sure it works with black magic
+		 */
+		
+		if (rotationValue > 0.0) {
+                left.set(-Math.max(-forwardValue, rotationValue));
+                right.set(forwardValue + rotationValue);
+            } else {
+                left.set(forwardValue - rotationValue);
+                right.set(-Math.max(-forwardValue, -rotationValue));
+            }
 	}
 }
