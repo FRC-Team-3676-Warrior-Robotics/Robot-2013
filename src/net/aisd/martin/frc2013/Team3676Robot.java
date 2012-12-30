@@ -34,7 +34,9 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
-        
+        while(isAutonomous() && isEnabled()){
+			//TODO: Once we need a routine we will put it here
+		}
     }
 
     /**
@@ -42,10 +44,10 @@ public class Team3676Robot extends SimpleRobot {
      */
     public void operatorControl() {
         while(isOperatorControl() && isEnabled()) {
-            driveTrain.tick();
-            pneumatics.tick();
-            }
+				Subsystems2013.driveTrain.tick();
+				Subsystems2013.pneumatics.tick();
         }
-
     }
+
 }
+
