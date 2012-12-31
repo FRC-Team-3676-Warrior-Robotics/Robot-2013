@@ -15,7 +15,7 @@ class Controller {
 	private Joystick joystick1;
 	
 	public Controller(int channel){
-		this.joystick1 = new Joystick(RobotMap2013.Input.joystick1);
+		this.joystick1 = new Joystick(channel);
 	}
 	
 	/**
@@ -33,6 +33,7 @@ class Controller {
 	public double getLeftYAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(2);
+		
 		if(joystick1.getRawAxis(2) < 0)
 			return -(joystick1.getRawAxis(2) * joystick1.getRawAxis(2));
 		else
@@ -42,6 +43,7 @@ class Controller {
 	public double getLeftXAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(1);
+		
 		if(joystick1.getRawAxis(1) < 0)
 			return -(joystick1.getRawAxis(1) * joystick1.getRawAxis(1));
 		else
@@ -51,6 +53,7 @@ class Controller {
 	public double getRightYAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(5);
+		
 		if(joystick1.getRawAxis(5) < 0)
 			return -(joystick1.getRawAxis(5) * joystick1.getRawAxis(5));
 		else
@@ -60,12 +63,18 @@ class Controller {
 	public double getRightXAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(4);
+		
 		if(joystick1.getRawAxis(4) < 0)
 			return -(joystick1.getRawAxis(4) * joystick1.getRawAxis(4));
 		else
 			return joystick1.getRawAxis(4) * joystick1.getRawAxis(4);
 	}
 	
+	/**
+	 * These methods do not return a squared value since they cannot do this
+	 * Helpful hint did some experimenting and multiplying a boolean by itself
+	 * actually does a "bitwise operation". Completely useless for us
+	 */
 	public boolean getLeftAxisButton(){
 		return joystick1.getRawButton(3);
 	}

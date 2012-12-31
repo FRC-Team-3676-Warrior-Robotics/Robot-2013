@@ -22,7 +22,7 @@ public class Subsystems2013 {
      * robot main's constuctor
      */
     public static void init() {
-		pneumatics = new Pneumatics();
+		//pneumatics = new Pneumatics();
 		controller1 = new Controller(RobotMap2013.Input.joystick1);
 		driveTrain = new DriveTrain(RobotMap2013.DriveMotors.slot,
 									RobotMap2013.DriveMotors.left_front,

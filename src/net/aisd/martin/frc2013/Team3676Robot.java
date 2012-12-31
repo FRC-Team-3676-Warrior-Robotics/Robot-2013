@@ -26,9 +26,16 @@ public class Team3676Robot extends SimpleRobot {
      * This is the robot's initialization
      * Instantiates any objects that will be used by the robot here
      */
-    public Team3676Robot(){
+    public void robotInit(){
         Subsystems2013.init();
-    }
+	}
+	
+	/*
+	 * This function is called when the robot is disabled
+	 */
+	public void disabled(){
+		
+	}
     
     /**
      * This function is called once each time the robot enters autonomous mode.
@@ -45,7 +52,7 @@ public class Team3676Robot extends SimpleRobot {
     public void operatorControl() {
         while(isOperatorControl() && isEnabled()) {
 				Subsystems2013.driveTrain.tick();
-				Subsystems2013.pneumatics.tick();
+				//Subsystems2013.pneumatics.tick();
         }
     }
 
