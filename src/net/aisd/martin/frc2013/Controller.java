@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 class Controller {
 	private Joystick joystick1;
+	//This is for numbers we don't know yet!
+	private final static int number = 2;
 	
 	public Controller(int channel){
 		this.joystick1 = new Joystick(channel);
