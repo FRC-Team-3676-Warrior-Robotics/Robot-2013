@@ -88,44 +88,44 @@ class Controller {
 	// TODO: Put the actual number where I put number so these methods actually do something
 	
 	public boolean getAButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getBButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 
 	public boolean getYButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getXButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getRightBumper() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getLeftBumper() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
-	//Some controllers actually record sensitivity when pulling on the triggers, keep that in mind in case it's useful for the game
+	/* Some controllers actually record sensitivity when pulling on the triggers, keep that in mind in case it's useful for the game
 	
 	public boolean getRightTrigger() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getLeftTrigger() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
-	
+	*/
 	public boolean getStartButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 	
 	public boolean getSelectButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 }
