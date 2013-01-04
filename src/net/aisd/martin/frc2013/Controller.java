@@ -85,47 +85,40 @@ class Controller {
 		return joystick1.getRawButton(6);
 	}
 	
-	// TODO: Put the actual number where I put number so these methods actually do something
+	/**
+	 * TODO: Find out which numbers go where
+	 * TODO: Put the triggers once we find out if they return doubles or floats
+	 */
 	
 	public boolean getAButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
 	public boolean getBButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 
 	public boolean getYButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
 	public boolean getXButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
 	public boolean getRightBumper() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
 	public boolean getLeftBumper() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
-	/* Some controllers actually record sensitivity when pulling on the triggers, keep that in mind in case it's useful for the game
-	
-	public boolean getRightTrigger() {
-		return joystick1.getRawButton(2);
-	}
-	
-	public boolean getLeftTrigger() {
-		return joystick1.getRawButton(2);
-	}
-	*/
 	public boolean getStartButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 	
 	public boolean getSelectButton() {
-		return joystick1.getRawButton(2);
+		return joystick1.getRawButton(number);
 	}
 }
