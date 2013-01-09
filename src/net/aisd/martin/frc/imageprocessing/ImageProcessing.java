@@ -1,7 +1,5 @@
-package net.aisd.martin.frc;
+package net.aisd.martin.frc.imageprocessing;
 
-import edu.wpi.first.wpilibj.SimpleRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.camera.AxisCamera;
 import edu.wpi.first.wpilibj.camera.AxisCameraException;
 import edu.wpi.first.wpilibj.image.*;
@@ -114,11 +112,20 @@ public class ImageProcessing {
 				if(scoreCompare(scores[i], false)) {
 					System.out.println("particle: " + i + "is a High Goal  centerX: " + report.center_mass_x_normalized + "centerY: " + report.center_mass_y_normalized);
 					System.out.println("Distance: " + computeDistance(thresholdImage, report, i, false));
+					
+					CenterTarget.getInstance().setxLocation(report.center_mass_x_normalized);
+					CenterTarget.getInstance().setyLocation(report.center_mass_y_normalized);
+					CenterTarget.getInstance().setDistance(computeDistance(thresholdImage, report, i, false));
 				} else if (scoreCompare(scores[i], true)) {
 					System.out.println("particle: " + i + "is a Middle Goal  centerX: " + report.center_mass_x_normalized + "centerY: " + report.center_mass_y_normalized);
 					System.out.println("Distance: " + computeDistance(thresholdImage, report, i, true));
+					
+					LeftTarget.getInstance().setxLocation(report.center_mass_x_normalized);
+					LeftTarget.getInstance().setyLocation(report.center_mass_y_normalized);
+					LeftTarget.getInstance().setDistance(computeDistance(thresholdImage, report, i, true));
 				} else {
 					System.out.println("particle: " + i + "is not a goal  centerX: " + report.center_mass_x_normalized + "centerY: " + report.center_mass_y_normalized);
+					//System determined that this is not a target do not change any classes
 				}
 
 				System.out.println("rect: " + scores[i].rectangularity + "ARinner: " + scores[i].aspectRatioInner);
@@ -242,17 +249,41 @@ public class ImageProcessing {
     }
 	
 	/*
-	 * These are used by other classes to determine where the target is located
-	 * in relation to the robot. These will eventually be able to fine tune the
-	 * robots firing position. IT WILL BE SICK!!!!
+	 * These classes will track certain targets and attempt to line the robot up
+	 * with them.
+	 * Returns an array of doubles that correspond to the location of the target.
+	 * The drivetrain class will use this information to move the robot accordingly
+	 * 
+	 * 0 - Distance
+	 * 1 - X Position
+	 * 2 - Y Position
 	 */
 	
-	public double getDistance(boolean center, boolean left, boolean right){
-		return 0.0;
+	public double[] trackLeftTarget(){
+		double[] location = new double[3];
+		
+		location[0] = LeftTarget.getInstance().getDistance();
+		location[1] = LeftTarget.getInstance().getxLocation();
+		location[2] = LeftTarget.getInstance().getyLocation();
+		return location;
 	}
 	
-	public double getPosition(boolean center, boolean left, boolean right){
-		return 0.0;
+	public double[] trackCenterTarget(){
+		double[] location = new double[3];
+		
+		location[0] = CenterTarget.getInstance().getDistance();
+		location[1] = CenterTarget.getInstance().getxLocation();
+		location[2] = CenterTarget.getInstance().getyLocation();
+		return location;
+	}
+	
+	public double[] trackRightTarget(){
+		double[] location = new double[3];
+		
+		location[0] = RightTarget.getInstance().getDistance();
+		location[1] = RightTarget.getInstance().getxLocation();
+		location[2] = RightTarget.getInstance().getyLocation();
+		return location;
 	}
 	
 }
