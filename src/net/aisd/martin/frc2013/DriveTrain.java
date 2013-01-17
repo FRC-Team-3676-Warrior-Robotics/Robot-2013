@@ -4,7 +4,7 @@
  */
 package net.aisd.martin.frc2013;
 
-import edu.wpi.first.wpilibj.Jaguar;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * This class controls all the systems related to moving the robot. This includes
@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.Jaguar;
  */
 public class DriveTrain {
 	//These are our speed controllers. Will change what they equal when we need to move
-	private Jaguar left;
-	private Jaguar right;
+	private Talon left;
+	private Talon right;
 	private Controller controller;
 	
 	/**
@@ -35,8 +35,8 @@ public class DriveTrain {
 	 * what you change and why!!!
 	 */
 	public DriveTrain(int slot, int left, int right, Controller controller){
-		this.left = new Jaguar(slot, left);
-		this.right = new Jaguar(slot, right);
+		this.left = new Talon(slot, left);
+		this.right = new Talon(slot, right);
 		
 		this.controller = controller;
 	}
