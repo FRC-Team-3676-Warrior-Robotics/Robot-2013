@@ -47,11 +47,11 @@ public final class RobotMap2013 {
     public static final class DriveMotors{
         private DriveMotors(){}
         //Slot the motors are located in
-        public static final int slot = INVALID;
+        public static final int slot = 1;
         
         //Use front left and right if only two motors are used
-        public static final int left_front = INVALID;
-        public static final int right_front = INVALID;
+        public static final int left_front = 1;
+        public static final int right_front = 2;
         //Use these motors if we use more than two
         public static final int left_back = INVALID;
         public static final int right_back = INVALID;

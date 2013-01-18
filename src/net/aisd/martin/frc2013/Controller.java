@@ -35,7 +35,7 @@ class Controller {
          * The left and right axis are swapped, but using the controller still works
          * with perfect control, so I wouldn't mess with them
 	 */
-	public double getLeftYAxis(boolean squared){
+	public double getRightXAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(5);
 		
@@ -45,7 +45,7 @@ class Controller {
 			return joystick1.getRawAxis(5) * joystick1.getRawAxis(5);
 	}
 	
-	public double getLeftXAxis(boolean squared){
+	public double getRightYAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(4);
 		
@@ -55,7 +55,7 @@ class Controller {
 			return joystick1.getRawAxis(4) * joystick1.getRawAxis(4);
 	}
 	
-	public double getRightYAxis(boolean squared){
+	public double getLeftXAxis(boolean squared){
 		if(!squared)
 			return -(joystick1.getRawAxis(2));
 		
@@ -65,7 +65,7 @@ class Controller {
 			return joystick1.getRawAxis(2) * joystick1.getRawAxis(2);
 	}
 	
-	public double getRightXAxis(boolean squared){
+	public double getLeftYAxis(boolean squared){
 		if(!squared)
 			return joystick1.getRawAxis(1);
 		

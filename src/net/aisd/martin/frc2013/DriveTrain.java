@@ -48,8 +48,8 @@ public class DriveTrain {
 	 * @param none
 	 */
 	public void tick(){
-		double forwardValue = controller.getLeftYAxis(true);
-		double rotationValue = controller.getLeftXAxis(true);
+		double forwardValue = controller.getLeftYAxis(false);
+		double rotationValue = controller.getLeftXAxis(false);
 		
 		/**
 		* TODO: Decide whether we want arcade or tank drive and erase the other 
@@ -58,8 +58,8 @@ public class DriveTrain {
 		*/
 		
 		//Implementing a tank drive
-		left.set(controller.getLeftYAxis(true));
-		right.set(controller.getRightYAxis(true));
+		//left.set(controller.getLeftYAxis(true));
+		//right.set(controller.getRightYAxis(true));
 		
 		//Implementing a Arcade drive
 		/**
@@ -73,7 +73,7 @@ public class DriveTrain {
                 left.set(-Math.max(-forwardValue, rotationValue));
                 right.set(forwardValue + rotationValue);
             } else {
-                left.set(forwardValue - rotationValue);
+                left.set(forwardValue + rotationValue);
                 right.set(-Math.max(-forwardValue, -rotationValue));
             }
 	}
