@@ -1,5 +1,7 @@
 package net.aisd.martin.frc2013;
 
+import net.aisd.martin.frc.imageprocessing.ImageProcessing;
+
 
 /**
  * This class will allow us to store "Subsystems" which are segments of our robot
@@ -16,6 +18,7 @@ public class Subsystems2013 {
 	public static Pneumatics pneumatics;
 	public static DriveTrain driveTrain;
 	public static Controller controller1;
+	public static ImageProcessing imageProcessor;
 	
     /*
      * This instantiates all the robots subsystems. Will probably be called in the
@@ -28,5 +31,6 @@ public class Subsystems2013 {
 									RobotMap2013.DriveMotors.left_front,
 									RobotMap2013.DriveMotors.right_front,
 									controller1);
+		imageProcessor = new ImageProcessing();
     }
 }

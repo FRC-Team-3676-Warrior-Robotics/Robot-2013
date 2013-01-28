@@ -50,10 +50,23 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
+		//Checks to see if tracking to save processor time if we are not
         while(isOperatorControl() && isEnabled()) {
-				Subsystems2013.driveTrain.tick();
-				//Subsystems2013.pneumatics.tick();
-        }
+			boolean track = Subsystems2013.controller1.getAButton() | Subsystems2013.controller1.getXButton()
+					| Subsystems2013.controller1.getBButton();
+			if(track)
+				Subsystems2013.imageProcessor.GetTargets();
+			
+			//Checks to see which target we need.
+			if(Subsystems2013.controller1.getAButton())
+				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackCenterTarget());
+			else if(Subsystems2013.controller1.getXButton())
+				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackLeftTarget());
+			else if(Subsystems2013.controller1.getBButton())
+				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackRightTarget());
+			else Subsystems2013.driveTrain.tick();
+			//Subsystems2013.pneumatics.tick();
+		}
     }
 
 }
