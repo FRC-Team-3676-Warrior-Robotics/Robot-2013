@@ -53,8 +53,8 @@ public final class RobotMap2013 {
         public static final int left_front = 1;
         public static final int right_front = 2;
         //Use these motors if we use more than two
-        public static final int left_back = INVALID;
-        public static final int right_back = INVALID;
+        public static final int left_back = 3;
+        public static final int right_back = 4;
     }
     
     /*

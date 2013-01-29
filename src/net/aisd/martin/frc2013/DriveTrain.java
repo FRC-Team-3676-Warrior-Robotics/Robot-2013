@@ -9,7 +9,7 @@ package net.aisd.martin.frc2013;
 import edu.wpi.first.wpilibj.Jaguar;
 >>>>>>> More Target Tracking Implementation
 import edu.wpi.first.wpilibj.Talon;
-
+import edu.wpi.first.wpilibj.Victor;
 /**
  * This class controls all the systems related to moving the robot. This includes
  * ALL mobility devices from arms, to wheels, to drive motors, to a jet rocket.
@@ -24,8 +24,10 @@ import edu.wpi.first.wpilibj.Talon;
  */
 public class DriveTrain {
 	//These are our speed controllers. Will change what they equal when we need to move
-	private Talon left;
-	private Talon right;
+	private Talon frontLeft;
+	private Talon frontRight;
+        private Victor backLeft;
+        private Victor backRight;
 	private Controller controller;
 	
 	/**
@@ -38,9 +40,11 @@ public class DriveTrain {
 	 * This class and its constructor will be updated frequently! Please label 
 	 * what you change and why!!!
 	 */
-	public DriveTrain(int slot, int left, int right, Controller controller){
-		this.left = new Talon(slot, left);
-		this.right = new Talon(slot, right);
+	public DriveTrain(int slot, int frontLeft, int frontRight, int backLeft, int backRight, Controller controller){
+		this.frontLeft = new Talon(slot, frontLeft);
+		this.frontRight = new Talon(slot, frontRight);
+                this.backLeft = new Victor(slot, backLeft);
+                this.backRight = new Victor(slot, backRight);
 		
 		this.controller = controller;
 	}
@@ -74,11 +78,15 @@ public class DriveTrain {
 		 */
 		
 		if (rotationValue > 0.0) {
-                left.set(-Math.max(-forwardValue, rotationValue));
-                right.set(forwardValue + rotationValue);
+                frontLeft.set(-Math.max(-forwardValue, rotationValue));
+                frontRight.set(forwardValue + rotationValue);
+                backLeft.set(-Math.max(-forwardValue, rotationValue));
+                backRight.set(forwardValue + rotationValue);
             } else {
-                left.set(forwardValue + rotationValue);
-                right.set(-Math.max(-forwardValue, -rotationValue));
+                frontLeft.set(forwardValue + rotationValue);
+                frontRight.set(-Math.max(-forwardValue, -rotationValue));
+                backLeft.set(forwardValue + rotationValue);
+                backRight.set(-Math.max(-forwardValue, -rotationValue));
             }
 	}
 <<<<<<< HEAD

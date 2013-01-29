@@ -30,6 +30,8 @@ public class Subsystems2013 {
 		driveTrain = new DriveTrain(RobotMap2013.DriveMotors.slot,
 									RobotMap2013.DriveMotors.left_front,
 									RobotMap2013.DriveMotors.right_front,
+                                                                        RobotMap2013.DriveMotors.left_back,
+                                                                        RobotMap2013.DriveMotors.right_back,
 									controller1);
 		imageProcessor = new ImageProcessing();
     }
