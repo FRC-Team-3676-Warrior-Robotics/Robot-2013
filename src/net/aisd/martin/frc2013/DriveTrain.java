@@ -4,10 +4,6 @@
  */
 package net.aisd.martin.frc2013;
 
-<<<<<<< HEAD
-=======
-import edu.wpi.first.wpilibj.Jaguar;
->>>>>>> More Target Tracking Implementation
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 /**
@@ -89,19 +85,18 @@ public class DriveTrain {
                 backRight.set(-Math.max(-forwardValue, -rotationValue));
             }
 	}
-<<<<<<< HEAD
-}
-=======
-	
-	public void autoTick(double[] position){
+        
+        public void autoTick(double[] position){
 		if(position[1] > .9){
-			right.set(.5);
+			frontRight.set(.5);
+                        backRight.set(.5);
 		} else if(position[1] > .5){
-			right.set(.3);
+			frontRight.set(.3);
+                        backRight.set(.3);
 		} else if(position[1] > .3){
-			right.set(.1);
+			frontRight.set(.1);
+                        backRight.set(.1);
 		}
-		
+
 	}
 }
->>>>>>> More Target Tracking Implementation
