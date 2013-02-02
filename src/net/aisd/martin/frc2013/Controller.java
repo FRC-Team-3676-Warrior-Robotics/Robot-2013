@@ -37,16 +37,6 @@ class Controller {
 	 */
 	public double getRightXAxis(boolean squared){
 		if(!squared)
-			return joystick1.getRawAxis(5);
-		
-		if(joystick1.getRawAxis(5) < 0)
-			return -(joystick1.getRawAxis(5) * joystick1.getRawAxis(5));
-		else
-			return joystick1.getRawAxis(5) * joystick1.getRawAxis(5);
-	}
-	
-	public double getRightYAxis(boolean squared){
-		if(!squared)
 			return joystick1.getRawAxis(4);
 		
 		if(joystick1.getRawAxis(4) < 0)
@@ -55,24 +45,34 @@ class Controller {
 			return joystick1.getRawAxis(4) * joystick1.getRawAxis(4);
 	}
 	
-	public double getLeftXAxis(boolean squared){
+	public double getRightYAxis(boolean squared){
 		if(!squared)
-			return -(joystick1.getRawAxis(2));
+			return joystick1.getRawAxis(5);
 		
-		if(joystick1.getRawAxis(2) < 0)
-			return -(joystick1.getRawAxis(2) * joystick1.getRawAxis(2));
+		if(joystick1.getRawAxis(5) < 0)
+			return -(joystick1.getRawAxis(5) * joystick1.getRawAxis(5));
 		else
-			return joystick1.getRawAxis(2) * joystick1.getRawAxis(2);
+			return joystick1.getRawAxis(5) * joystick1.getRawAxis(5);
 	}
 	
-	public double getLeftYAxis(boolean squared){
+	public double getLeftXAxis(boolean squared){
 		if(!squared)
-			return joystick1.getRawAxis(1);
+			return -(joystick1.getRawAxis(1));
 		
 		if(joystick1.getRawAxis(1) < 0)
 			return -(joystick1.getRawAxis(1) * joystick1.getRawAxis(1));
 		else
 			return joystick1.getRawAxis(1) * joystick1.getRawAxis(1);
+	}
+	
+	public double getLeftYAxis(boolean squared){
+		if(!squared)
+			return joystick1.getRawAxis(2);
+		
+		if(joystick1.getRawAxis(2) < 0)
+			return -(joystick1.getRawAxis(2) * joystick1.getRawAxis(2));
+		else
+			return joystick1.getRawAxis(2) * joystick1.getRawAxis(2);
 	}
 	
 	/**
@@ -81,11 +81,11 @@ class Controller {
 	 * actually does a "bitwise operation". Completely useless for us
 	 */
 	public boolean getLeftAxisButton(){
-		return joystick1.getRawButton(3);
+		return joystick1.getRawButton(9);
 	}
 	
 	public boolean getRightAxisButton(){
-		return joystick1.getRawButton(6);
+		return joystick1.getRawButton(10);
 	}
 	
 	/**
@@ -94,34 +94,34 @@ class Controller {
 	 */
 	
 	public boolean getAButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(1);
 	}
 	
 	public boolean getBButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(2);
 	}
 
 	public boolean getYButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(4);
 	}
 	
 	public boolean getXButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(3);
 	}
 	
 	public boolean getRightBumper() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(6);
 	}
 	
 	public boolean getLeftBumper() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(5);
 	}
 	
 	public boolean getStartButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(8);
 	}
 	
 	public boolean getSelectButton() {
-		return joystick1.getRawButton(number);
+		return joystick1.getRawButton(7);
 	}
 }

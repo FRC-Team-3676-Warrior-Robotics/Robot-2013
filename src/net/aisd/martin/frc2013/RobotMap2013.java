@@ -60,14 +60,24 @@ public final class RobotMap2013 {
     /*
      * Contains the slot and channel of all the compressor pnuematic hardware
      */
+    public static final class Shooter{
+        private Shooter(){}
+        public static final int pnuematics_slot = 1;
+        public static final int motor_slot = 1;
+        
+        public static final int piston_forward = 1;
+        public static final int piston_backwards = 2;
+        public static final int front = 5;
+        public static final int back = 6;
+    }
     
     public static final class Pneumatics{
         private Pneumatics() {}
         //Slot that pnumatics are located in
-        public static final int slot = INVALID;
+        public static final int slot = 1;
         //Channels
-        public static final int compressor = INVALID;
-        public static final int pressure_switch = INVALID;
+        public static final int compressor = 1;
+        public static final int pressure_switch = 1;
     }
     
     

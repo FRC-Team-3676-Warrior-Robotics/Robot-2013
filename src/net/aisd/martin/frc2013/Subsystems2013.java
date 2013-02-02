@@ -19,13 +19,14 @@ public class Subsystems2013 {
 	public static DriveTrain driveTrain;
 	public static Controller controller1;
 	public static ImageProcessing imageProcessor;
+        public static Shooter shooter;
 	
     /*
      * This instantiates all the robots subsystems. Will probably be called in the
      * robot main's constuctor
      */
     public static void init() {
-		//pneumatics = new Pneumatics();
+		pneumatics = new Pneumatics();
 		controller1 = new Controller(RobotMap2013.Input.joystick1);
 		driveTrain = new DriveTrain(RobotMap2013.DriveMotors.slot,
 									RobotMap2013.DriveMotors.left_front,
@@ -34,5 +35,7 @@ public class Subsystems2013 {
                                                                         RobotMap2013.DriveMotors.right_back,
 									controller1);
 		imageProcessor = new ImageProcessing();
+                shooter = new Shooter(RobotMap2013.Shooter.motor_slot, RobotMap2013.Shooter.front, RobotMap2013.Shooter.back,
+                        RobotMap2013.Shooter.pnuematics_slot, RobotMap2013.Shooter.piston_forward, RobotMap2013.Shooter.piston_backwards);
     }
 }

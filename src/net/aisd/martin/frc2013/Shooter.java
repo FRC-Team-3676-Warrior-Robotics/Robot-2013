@@ -4,10 +4,53 @@
  */
 package net.aisd.martin.frc2013;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 /**
  * Empty Class till we know what to do with it
  * @author Neil
  */
 public class Shooter {
-	
+	private Talon front;
+        private Talon back;
+        private DoubleSolenoid loader;
+        private long readyTime;
+        private final static long reload_time = 2 * 1000;
+        private boolean set;
+        
+        public Shooter(int slot, int front, int back, 
+                int pneumaticsSlot, int pistonF, int pistonB){
+            this.front = new Talon(slot, front);
+            this.back = new Talon(slot, back);
+            this.loader = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
+            readyTime = 0;
+        }
+        
+        private void shoot(){
+            //if(System.currentTimeMillis() < readyTime)
+            //    return false;
+            set = !set;
+            if(set)
+                loader.set(DoubleSolenoid.Value.kReverse);
+            else
+                loader.set(DoubleSolenoid.Value.kForward);
+            
+        }
+        
+        public void think(boolean spinUp, boolean fire){
+            //if(System.currentTimeMillis() > readyTime - 1 * 1000)
+            //    loader.set(DoubleSolenoid.Value.kForward);
+            if(spinUp){
+                front.set(-1);
+                back.set(-1);
+            } else {
+                front.set(0);
+                back.set(0);
+            }
+       
+            if(fire)
+                shoot();
+        }
 }

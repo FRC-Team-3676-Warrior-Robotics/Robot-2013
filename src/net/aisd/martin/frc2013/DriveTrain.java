@@ -20,8 +20,8 @@ import edu.wpi.first.wpilibj.Victor;
  */
 public class DriveTrain {
 	//These are our speed controllers. Will change what they equal when we need to move
-	private Talon frontLeft;
-	private Talon frontRight;
+	private Victor frontLeft;
+	private Victor frontRight;
         private Victor backLeft;
         private Victor backRight;
 	private Controller controller;
@@ -37,8 +37,8 @@ public class DriveTrain {
 	 * what you change and why!!!
 	 */
 	public DriveTrain(int slot, int frontLeft, int frontRight, int backLeft, int backRight, Controller controller){
-		this.frontLeft = new Talon(slot, frontLeft);
-		this.frontRight = new Talon(slot, frontRight);
+		this.frontLeft = new Victor(slot, frontLeft);
+		this.frontRight = new Victor(slot, frontRight);
                 this.backLeft = new Victor(slot, backLeft);
                 this.backRight = new Victor(slot, backRight);
 		
@@ -72,18 +72,16 @@ public class DriveTrain {
 		 * Borrowed this code from FRC. We don't need to customize it yet or 
 		 * hopefully ever cause I'm pretty sure it works with black magic
 		 */
-		
-		if (rotationValue > 0.0) {
-                frontLeft.set(-Math.max(-forwardValue, rotationValue));
-                frontRight.set(forwardValue + rotationValue);
-                backLeft.set(-Math.max(-forwardValue, rotationValue));
-                backRight.set(forwardValue + rotationValue);
-            } else {
-                frontLeft.set(forwardValue + rotationValue);
-                frontRight.set(-Math.max(-forwardValue, -rotationValue));
-                backLeft.set(forwardValue + rotationValue);
-                backRight.set(-Math.max(-forwardValue, -rotationValue));
-            }
+		double left = forwardValue + rotationValue;
+                double right = forwardValue - rotationValue;
+                left = Math.max(left, -1);
+                right = Math.max(right, -1);
+                left = Math.min(left, 1);
+                right = Math.min(right, 1);
+                frontLeft.set(left);
+                backLeft.set(left);
+                frontRight.set(right);
+                backRight.set(right);
 	}
         
         public void autoTick(double[] position){

@@ -28,7 +28,8 @@ public class Team3676Robot extends SimpleRobot {
      */
     public void robotInit(){
         Subsystems2013.init();
-	}
+        Subsystems2013.pneumatics.compressor.start();
+    }
 	
 	/*
 	 * This function is called when the robot is disabled
@@ -65,7 +66,11 @@ public class Team3676Robot extends SimpleRobot {
 			else if(Subsystems2013.controller1.getBButton())
 				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackRightTarget());
 			else Subsystems2013.driveTrain.tick();
-			//Subsystems2013.pneumatics.tick();
+			
+                        Subsystems2013.pneumatics.tick();
+                        
+                        Subsystems2013.shooter.think(Subsystems2013.controller1.getLeftBumper(), 
+                                                Subsystems2013.controller1.getRightBumper());
 		}
     }
 
