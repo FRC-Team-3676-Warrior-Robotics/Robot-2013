@@ -29,19 +29,21 @@ public class Shooter {
         }
         
         private void shoot(){
-            //if(System.currentTimeMillis() < readyTime)
-            //    return false;
+//            if(System.currentTimeMillis() < readyTime)
+//                return;
+            readyTime = System.currentTimeMillis() + reload_time;
+//            loader.set(DoubleSolenoid.Value.kForward);
+//            return;
             set = !set;
             if(set)
-                loader.set(DoubleSolenoid.Value.kReverse);
-            else
                 loader.set(DoubleSolenoid.Value.kForward);
-            
+            else
+                loader.set(DoubleSolenoid.Value.kReverse);
         }
         
         public void think(boolean spinUp, boolean fire){
-            //if(System.currentTimeMillis() > readyTime - 1 * 1000)
-            //    loader.set(DoubleSolenoid.Value.kForward);
+//            if(System.currentTimeMillis() > readyTime - 1 * 1000)
+//                loader.set(DoubleSolenoid.Value.kForward);
             if(spinUp){
                 front.set(-1);
                 back.set(-1);
@@ -52,5 +54,12 @@ public class Shooter {
        
             if(fire)
                 shoot();
+            
+            if(readyTime - System.currentTimeMillis() < 0){
+                SmartDashboard.putBoolean("Ready to Fire", true);
+            } else{
+                SmartDashboard.putBoolean("Ready to Fire", false);
+            }
+            
         }
 }
