@@ -4,7 +4,6 @@
  */
 package net.aisd.martin.frc2013;
 
-import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.Victor;
 /**
  * This class controls all the systems related to moving the robot. This includes
@@ -51,7 +50,7 @@ public class DriveTrain {
 	 * loop
 	 * @param none
 	 */
-	public void tick(){
+	public void tick(boolean precision){
 		double forwardValue = controller.getLeftYAxis(false);
 		double rotationValue = controller.getLeftXAxis(false);
 		
@@ -78,6 +77,11 @@ public class DriveTrain {
                 right = Math.max(right, -1);
                 left = Math.min(left, 1);
                 right = Math.min(right, 1);
+                if(precision){
+                    left *= .5;
+                    right *= .5;
+                }
+                left *= .9;
                 frontLeft.set(left);
                 backLeft.set(left);
                 frontRight.set(right);
