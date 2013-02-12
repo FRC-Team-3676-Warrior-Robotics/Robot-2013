@@ -27,8 +27,8 @@ public class Team3676Robot extends SimpleRobot {
      * Instantiates any objects that will be used by the robot here
      */
     public void robotInit(){
-        Subsystems2013.init();
-        Subsystems2013.pneumatics.compressor.start();
+		Subsystems2013.init();
+		Subsystems2013.pneumatics.compressor.start();
         
     }
 	
@@ -52,36 +52,18 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-		//Checks to see if tracking to save processor time if we are not
-        while(isOperatorControl() && isEnabled()) {
-			boolean track = Subsystems2013.controller1.getAButton() | Subsystems2013.controller1.getXButton()
-					| Subsystems2013.controller1.getBButton();
-			if(track)
-				Subsystems2013.imageProcessor.GetTargets();
-			
-			//Checks to see which target we need.
-			if(Subsystems2013.controller1.getAButton())
-				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackCenterTarget());
-			else if(Subsystems2013.controller1.getXButton())
-				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackLeftTarget());
-			else if(Subsystems2013.controller1.getBButton())
-				Subsystems2013.driveTrain.autoTick(Subsystems2013.imageProcessor.trackRightTarget());
-			else Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftAxisButton());
-			
-                        Subsystems2013.pneumatics.tick();
-                        
-                        Subsystems2013.shooter.think(Subsystems2013.controller1.getLeftBumper(), 
-                                                Subsystems2013.controller1.getRightBumper());
-                        if(Subsystems2013.controller1.getSelectButton())
-                        {
-                            Subsystems2013.climber.extend();
-                        }
-                        else
-                        {
-                            Subsystems2013.climber.retract();
-                        }
-        }
-    }
+		Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftAxisButton());
+		Subsystems2013.pneumatics.tick();
+                       
+		Subsystems2013.shooter.think(Subsystems2013.controller1.getAButton(), Subsystems2013.controller1.getBButton(), 
+				Subsystems2013.controller1.getXButton(), Subsystems2013.controller1.getYButton(),
+				Subsystems2013.controller1.getLeftBumper());
+		if(Subsystems2013.controller1.getSelectButton()){
+			Subsystems2013.climber.extend();
+		} else {
+			Subsystems2013.climber.retract();
+		}
+	}
 
 }
 

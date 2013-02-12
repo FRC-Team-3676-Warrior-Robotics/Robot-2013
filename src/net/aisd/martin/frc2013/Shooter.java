@@ -34,17 +34,26 @@ public class Shooter {
             loader.set(DoubleSolenoid.Value.kReverse);
         }
         
-        public void think(boolean spinUp, boolean fire){
+        public void think(boolean quarter, boolean half, boolean most, boolean full, boolean fire){
             if(System.currentTimeMillis() > readyTime - 1 * 1000)
                 loader.set(DoubleSolenoid.Value.kForward);
             
-            if(spinUp){
-                front.set(-1);
+            if(quarter) {
+                front.set(-.25);
+                back.set(-.25);
+            } else if(half) {
+                front.set(-.5);
+                back.set(-.5);
+            } else if(most) {
+				front.set(-.75);
+                back.set(-.75);
+			} else if(full) {
+				front.set(-1);
                 back.set(-1);
-            } else {
-                front.set(0);
+			} else {
+				front.set(0);
                 back.set(0);
-            }
+			}
        
             if(fire)
                 shoot();
