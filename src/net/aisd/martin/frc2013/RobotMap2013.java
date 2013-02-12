@@ -80,5 +80,13 @@ public final class RobotMap2013 {
         public static final int pressure_switch = 1;
     }
     
+    public static final class PClimber{
+        private PClimber(){}
+        public static final int pnuematics_slot = 1;
+        
+        public static final int cpiston_forward = 3;
+        public static final int cpiston_backwards = 4;
+    }
+    
     
 }

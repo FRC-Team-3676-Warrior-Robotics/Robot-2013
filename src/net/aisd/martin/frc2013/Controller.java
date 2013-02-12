@@ -124,4 +124,7 @@ class Controller {
 	public boolean getSelectButton() {
 		return joystick1.getRawButton(7);
 	}
+        public double getLeftTrigger(){
+            return joystick1.getRawAxis(3);
+        }
 }

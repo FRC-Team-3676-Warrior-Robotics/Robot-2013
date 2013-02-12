@@ -29,6 +29,7 @@ public class Team3676Robot extends SimpleRobot {
     public void robotInit(){
         Subsystems2013.init();
         Subsystems2013.pneumatics.compressor.start();
+        
     }
 	
 	/*
@@ -71,7 +72,15 @@ public class Team3676Robot extends SimpleRobot {
                         
                         Subsystems2013.shooter.think(Subsystems2013.controller1.getLeftBumper(), 
                                                 Subsystems2013.controller1.getRightBumper());
-		}
+                        if(Subsystems2013.controller1.getSelectButton())
+                        {
+                            Subsystems2013.climber.extend();
+                        }
+                        else
+                        {
+                            Subsystems2013.climber.retract();
+                        }
+        }
     }
 
 }

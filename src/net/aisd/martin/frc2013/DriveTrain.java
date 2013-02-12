@@ -81,7 +81,7 @@ public class DriveTrain {
                     left *= .5;
                     right *= .5;
                 }
-                left *= .9;
+                left *= .8;
                 frontLeft.set(left);
                 backLeft.set(left);
                 frontRight.set(right);
