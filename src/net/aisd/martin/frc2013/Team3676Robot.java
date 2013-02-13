@@ -52,6 +52,7 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
+            while(isOperatorControl() && isEnabled()){
 		Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftAxisButton());
 		Subsystems2013.pneumatics.tick();
                        
@@ -60,7 +61,8 @@ public class Team3676Robot extends SimpleRobot {
 				Subsystems2013.controller1.getLeftBumper());
 		Subsystems2013.climber.think(Subsystems2013.controller1.getSelectButton());
                 Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(false), Subsystems2013.controller1.getRightXAxis(false));
-	}
+            }
+    }
 
 }
 

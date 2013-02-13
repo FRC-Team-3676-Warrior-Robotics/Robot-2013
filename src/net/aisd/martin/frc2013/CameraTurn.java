@@ -24,15 +24,14 @@ public class CameraTurn {
     }
     
     public void think(double up, double left){
-        if(up > 0)
-            upAngle += .5;
-        if(up < 0)
-            upAngle -= .5;
-        if(left < 0)
-            leftAngle -= .5;
-        if(left > 0)
-            leftAngle += .5;
-        yAxis.setAngle(upAngle);
-        xAxis.setAngle(leftAngle);
-    }
+        if(up > .1  ||  up < -.1)
+            yAxis.set((up / 2) + .5);
+        else
+            xAxis.set(.5);
+        if(left < -.1 || left > .1)
+            xAxis.set((left / 2) + .5);
+        else{
+            yAxis.set(.5);
+        }
+    } 
 }
