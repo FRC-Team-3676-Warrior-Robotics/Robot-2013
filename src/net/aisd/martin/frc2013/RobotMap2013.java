@@ -88,5 +88,13 @@ public final class RobotMap2013 {
         public static final int cpiston_backwards = 4;
     }
     
+    public static final class Camera{
+        public static final String IPaddressTarget = "10.36.76.11";
+        public static final String IPaddressRotate = "10.36.76.11";
+        public static final int slot = 1;
+        public static final int Yaxis = 7;
+        public static final int Xaxis = 8;
+    }
+    
     
 }

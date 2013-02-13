@@ -18,9 +18,9 @@ public class Subsystems2013 {
 	public static Pneumatics pneumatics;
 	public static DriveTrain driveTrain;
 	public static Controller controller1;
-	public static ImageProcessing imageProcessor;
         public static Shooter shooter;
 	public static PClimber climber;
+        public static CameraTurn camera;
     /*
      * This instantiates all the robots subsystems. Will probably be called in the
      * robot main's constuctor
@@ -34,9 +34,10 @@ public class Subsystems2013 {
                                                                         RobotMap2013.DriveMotors.left_back,
                                                                         RobotMap2013.DriveMotors.right_back,
 									controller1);
-		imageProcessor = new ImageProcessing();
+		
                 shooter = new Shooter(RobotMap2013.Shooter.motor_slot, RobotMap2013.Shooter.front, RobotMap2013.Shooter.back,
                         RobotMap2013.Shooter.pnuematics_slot, RobotMap2013.Shooter.piston_forward, RobotMap2013.Shooter.piston_backwards);
                 climber = new PClimber(RobotMap2013.PClimber.pnuematics_slot, RobotMap2013.PClimber.cpiston_forward, RobotMap2013.PClimber.cpiston_backwards);
+                camera = new CameraTurn(RobotMap2013.Camera.slot, RobotMap2013.Camera.Yaxis, RobotMap2013.Camera.Xaxis);
     }
 }

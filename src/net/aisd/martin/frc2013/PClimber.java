@@ -16,16 +16,23 @@ public class PClimber{
     private DoubleSolenoid climbPiston;
 
 
-public PClimber(int pneumaticsSlot, int pistonF, int pistonB)
-{
-    this.climbPiston = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
-}
+    public PClimber(int pneumaticsSlot, int pistonF, int pistonB)
+    {
+        this.climbPiston = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
+    }
 
-public void extend(){
-            climbPiston.set(DoubleSolenoid.Value.kForward);
-}
+    public void extend(){
+                climbPiston.set(DoubleSolenoid.Value.kForward);
+    }
 
-public void retract(){
-    climbPiston.set(DoubleSolenoid.Value.kReverse);
-}
+    public void retract(){
+        climbPiston.set(DoubleSolenoid.Value.kReverse);
+    }
+
+    public void think(boolean extend){
+        if(extend)
+            extend();
+        else
+            retract();
+    }
 }
