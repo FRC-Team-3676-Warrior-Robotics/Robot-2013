@@ -38,7 +38,7 @@ public final class RobotMap2013 {
     public static final class Input{
         private Input(){}
         public static final int joystick1 = 1;
-        public static final int joystick2 = UNUSED;
+        public static final int joystick2 = 2;
     }
     
     /*
@@ -90,10 +90,11 @@ public final class RobotMap2013 {
     
     public static final class Camera{
         public static final String IPaddressTarget = "10.36.76.11";
-        public static final String IPaddressRotate = "10.36.76.11";
+        public static final String IPaddressRotate = "10.36.76.12";
         public static final int slot = 1;
         public static final int Yaxis = 7;
         public static final int Xaxis = 8;
+        public static final int light = 9;
     }
     
     

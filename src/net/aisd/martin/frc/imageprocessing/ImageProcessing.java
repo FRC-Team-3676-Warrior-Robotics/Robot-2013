@@ -40,7 +40,7 @@ public class ImageProcessing {
 	 * other random rectangle
 	*/
 	
-	final int XMAXSIZE = 24;
+    final int XMAXSIZE = 24;
     final int XMINSIZE = 24;
     final int YMAXSIZE = 24;
     final int YMINSIZE = 48;

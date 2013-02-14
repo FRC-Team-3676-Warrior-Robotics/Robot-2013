@@ -60,7 +60,8 @@ public class Team3676Robot extends SimpleRobot {
 				Subsystems2013.controller1.getXButton(), Subsystems2013.controller1.getYButton(),
 				Subsystems2013.controller1.getLeftBumper());
 		Subsystems2013.climber.think(Subsystems2013.controller1.getSelectButton());
-                Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(false), Subsystems2013.controller1.getRightXAxis(false));
+                Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(false), Subsystems2013.controller1.getRightXAxis(false),
+                                Subsystems2013.controller2.getAButton());
             }
     }
 
