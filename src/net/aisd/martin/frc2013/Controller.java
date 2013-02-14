@@ -11,13 +11,13 @@ import edu.wpi.first.wpilibj.Joystick;
  * X-BOX type
  * @author Neil
  */
-class Controller {
-	private Joystick joystick1;
+class Controller{
+	private Joystick joystick;
 	//This is for numbers we don't know yet!
 	private final static int number = 2;
 	
 	public Controller(int channel){
-		this.joystick1 = new Joystick(channel);
+		this.joystick = new Joystick(channel);
 	}
 	
 	/**
@@ -35,44 +35,50 @@ class Controller {
          * The left and right axis are swapped, but using the controller still works
          * with perfect control, so I wouldn't mess with them
 	 */
-	public double getRightXAxis(boolean squared){
-		if(!squared)
-			return joystick1.getRawAxis(4);
-		
-		if(joystick1.getRawAxis(4) < 0)
-			return -(joystick1.getRawAxis(4) * joystick1.getRawAxis(4));
-		else
-			return joystick1.getRawAxis(4) * joystick1.getRawAxis(4);
+	public double getRightXAxis(){
+		return joystick.getRawAxis(4);
 	}
 	
-	public double getRightYAxis(boolean squared){
-		if(!squared)
-			return joystick1.getRawAxis(5);
-		
-		if(joystick1.getRawAxis(5) < 0)
-			return -(joystick1.getRawAxis(5) * joystick1.getRawAxis(5));
-		else
-			return joystick1.getRawAxis(5) * joystick1.getRawAxis(5);
+	public double getRightYAxis(){
+		return joystick.getRawAxis(5);
 	}
 	
-	public double getLeftXAxis(boolean squared){
-		if(!squared)
-			return -(joystick1.getRawAxis(1));
-		
-		if(joystick1.getRawAxis(1) < 0)
-			return -(joystick1.getRawAxis(1) * joystick1.getRawAxis(1));
-		else
-			return joystick1.getRawAxis(1) * joystick1.getRawAxis(1);
+	public double getLeftXAxis(){
+		return joystick.getRawAxis(1);
 	}
 	
-	public double getLeftYAxis(boolean squared){
-		if(!squared)
-			return joystick1.getRawAxis(2);
-		
-		if(joystick1.getRawAxis(2) < 0)
-			return -(joystick1.getRawAxis(2) * joystick1.getRawAxis(2));
-		else
-			return joystick1.getRawAxis(2) * joystick1.getRawAxis(2);
+	public double getLeftYAxis(){
+		return joystick.getRawAxis(2);
+	}
+	
+	public double getTriggers(){
+		return joystick.getRawAxis(3);
+	}
+	
+	//Natively the joystick returns this as a double
+	//converts to a boolean
+	public boolean getDPadLeft(){
+		if(joystick.getRawAxis(6) == -1)
+			return true;
+		return false;
+	}
+	
+	public boolean getDPadRight(){
+		if(joystick.getRawAxis(6) == 1)
+			return true;
+		return false;
+	}	
+	
+	public boolean getDPadUp(){
+		if(joystick.getRawAxis(7) == 1)
+			return true;
+		return false;
+	}
+	
+	public boolean getDPadDown(){
+		if(joystick.getRawAxis(7) == -1)
+			return true;
+		return false;
 	}
 	
 	/**
@@ -81,11 +87,11 @@ class Controller {
 	 * actually does a "bitwise operation". Completely useless for us
 	 */
 	public boolean getLeftAxisButton(){
-		return joystick1.getRawButton(9);
+		return joystick.getRawButton(9);
 	}
 	
 	public boolean getRightAxisButton(){
-		return joystick1.getRawButton(10);
+		return joystick.getRawButton(10);
 	}
 	
 	/**
@@ -94,37 +100,35 @@ class Controller {
 	 */
 	
 	public boolean getAButton() {
-		return joystick1.getRawButton(1);
+		return joystick.getRawButton(1);
 	}
 	
 	public boolean getBButton() {
-		return joystick1.getRawButton(2);
+		return joystick.getRawButton(2);
 	}
 
 	public boolean getYButton() {
-		return joystick1.getRawButton(4);
+		return joystick.getRawButton(4);
 	}
 	
 	public boolean getXButton() {
-		return joystick1.getRawButton(3);
+		return joystick.getRawButton(3);
 	}
 	
 	public boolean getRightBumper() {
-		return joystick1.getRawButton(6);
+		return joystick.getRawButton(6);
 	}
 	
 	public boolean getLeftBumper() {
-		return joystick1.getRawButton(5);
+		return joystick.getRawButton(5);
 	}
 	
 	public boolean getStartButton() {
-		return joystick1.getRawButton(8);
+		return joystick.getRawButton(8);
 	}
 	
 	public boolean getSelectButton() {
-		return joystick1.getRawButton(7);
+		return joystick.getRawButton(7);
 	}
-        public double getLeftTrigger(){
-            return joystick1.getRawAxis(3);
-        }
+	
 }

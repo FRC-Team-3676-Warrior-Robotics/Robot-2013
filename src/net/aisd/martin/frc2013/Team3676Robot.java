@@ -5,6 +5,7 @@
 package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 /**
  *
@@ -21,7 +22,6 @@ public class Team3676Robot extends SimpleRobot {
     /**
      * Robot's instance variables
      */
-    
     /**
      * This is the robot's initialization
      * Instantiates any objects that will be used by the robot here
@@ -52,18 +52,24 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-            while(isOperatorControl() && isEnabled()){
-		Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftAxisButton());
-		Subsystems2013.pneumatics.tick();
+		while(isOperatorControl() && isEnabled()){
+			Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftYAxis(), Subsystems2013.controller1.getLeftXAxis(),
+					Subsystems2013.controller1.getLeftAxisButton());
+			
+			Subsystems2013.pneumatics.tick();
                        
-		Subsystems2013.shooter.think(Subsystems2013.controller1.getAButton(), Subsystems2013.controller1.getBButton(), 
+			Subsystems2013.shooter.think(Subsystems2013.controller1.getAButton(), Subsystems2013.controller1.getBButton(), 
 				Subsystems2013.controller1.getXButton(), Subsystems2013.controller1.getYButton(),
-				Subsystems2013.controller1.getLeftBumper());
-		Subsystems2013.climber.think(Subsystems2013.controller1.getSelectButton());
-                Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(false), Subsystems2013.controller1.getRightXAxis(false),
-                                Subsystems2013.controller2.getAButton());
-            }
-    }
-
+				Subsystems2013.controller1.getRightBumper());
+			
+			Subsystems2013.climber.think(Subsystems2013.controller1.getLeftBumper());
+            
+			Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(), Subsystems2013.controller1.getRightXAxis(),
+                                Subsystems2013.controller1.getStartButton());
+			
+			Subsystems2013.smartDash.tick(Subsystems2013.controller1.getDPadDown(), "SUP");
+		}
+	}
+	
 }
 

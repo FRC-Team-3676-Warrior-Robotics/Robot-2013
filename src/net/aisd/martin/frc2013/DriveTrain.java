@@ -50,9 +50,7 @@ public class DriveTrain {
 	 * loop
 	 * @param none
 	 */
-	public void tick(boolean precision){
-		double forwardValue = controller.getLeftYAxis(false);
-		double rotationValue = controller.getLeftXAxis(false);
+	public void tick(double forward, double rotation, boolean precision){
 		
 		/**
 		* TODO: Decide whether we want arcade or tank drive and erase the other 
@@ -71,8 +69,8 @@ public class DriveTrain {
 		 * Borrowed this code from FRC. We don't need to customize it yet or 
 		 * hopefully ever cause I'm pretty sure it works with black magic
 		 */
-		double left = forwardValue + rotationValue;
-                double right = forwardValue - rotationValue;
+		double left = forward + rotation;
+                double right = forward - rotation;
                 left = Math.max(left, -1);
                 right = Math.max(right, -1);
                 left = Math.min(left, 1);
