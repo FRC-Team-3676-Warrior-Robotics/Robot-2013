@@ -6,6 +6,7 @@ package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.SimpleRobot;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import net.aisd.martin.frc2013.Subsystems;
 
 /**
  *
@@ -27,8 +28,8 @@ public class Team3676Robot extends SimpleRobot {
      * Instantiates any objects that will be used by the robot here
      */
     public void robotInit(){
-		Subsystems2013.init();
-		Subsystems2013.pneumatics.compressor.start();
+		Subsystems.init();
+		Subsystems.pneumatics.compressor.start();
         
     }
 	
@@ -53,21 +54,28 @@ public class Team3676Robot extends SimpleRobot {
      */
     public void operatorControl() {
 		while(isOperatorControl() && isEnabled()){
-			Subsystems2013.driveTrain.tick(Subsystems2013.controller1.getLeftYAxis(), Subsystems2013.controller1.getLeftXAxis(),
-					Subsystems2013.controller1.getLeftAxisButton());
 			
-			Subsystems2013.pneumatics.tick();
+			if(Subsystems.controller1.getDPadUp()){
+				Subsystems.IP.GetTargets();
+				Subsystems.driveTrain.autoTick(Subsystems.IP.trackCenterTarget());
+			}
+			else {
+				Subsystems.driveTrain.tick(Subsystems.controller1.getLeftYAxis(), Subsystems.controller1.getLeftXAxis(),
+											Subsystems.controller1.getLeftAxisButton());
+			}
+			
+			Subsystems.pneumatics.tick();
                        
-			Subsystems2013.shooter.think(Subsystems2013.controller1.getAButton(), Subsystems2013.controller1.getBButton(), 
-				Subsystems2013.controller1.getXButton(), Subsystems2013.controller1.getYButton(),
-				Subsystems2013.controller1.getRightBumper());
+			Subsystems.shooter.think(Subsystems.controller1.getAButton(), Subsystems.controller1.getBButton(), 
+					Subsystems.controller1.getXButton(), Subsystems.controller1.getYButton(),
+					Subsystems.controller1.getRightBumper());
 			
-			Subsystems2013.climber.think(Subsystems2013.controller1.getLeftBumper());
+			Subsystems.climber.think(Subsystems.controller1.getLeftBumper());
             
-			Subsystems2013.camera.think(Subsystems2013.controller1.getRightYAxis(), Subsystems2013.controller1.getRightXAxis(),
-                                Subsystems2013.controller1.getStartButton());
+			Subsystems.camera.think(Subsystems.controller1.getRightYAxis(), Subsystems.controller1.getRightXAxis(),
+                                Subsystems.controller1.getStartButton());
 			
-			Subsystems2013.smartDash.tick(Subsystems2013.controller1.getDPadDown(), "SUP");
+			Subsystems.smartDash.tick(Subsystems.controller1.getDPadDown(), "SUP");
 		}
 	}
 	

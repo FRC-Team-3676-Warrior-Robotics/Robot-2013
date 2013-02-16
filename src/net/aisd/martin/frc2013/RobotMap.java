@@ -13,7 +13,7 @@ package net.aisd.martin.frc2013;
  * the wiring easier and significantly reduces the number of magic numbers
  * floating around.
  */
-public final class RobotMap2013 {
+public final class RobotMap {
     /**
      * Signals a value that needs changed
      * Used in code as a placeholder for hardware that hasn't

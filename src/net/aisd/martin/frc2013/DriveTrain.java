@@ -5,6 +5,7 @@
 package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 /**
  * This class controls all the systems related to moving the robot. This includes
  * ALL mobility devices from arms, to wheels, to drive motors, to a jet rocket.
@@ -87,16 +88,36 @@ public class DriveTrain {
 	}
         
         public void autoTick(double[] position){
-		if(position[1] > .9){
-			frontRight.set(.5);
-                        backRight.set(.5);
-		} else if(position[1] > .5){
-			frontRight.set(.3);
-                        backRight.set(.3);
-		} else if(position[1] > .3){
-			frontRight.set(.1);
-                        backRight.set(.1);
-		}
+			//First aligns the x axis then aligns distance
+			if(position[1] > .5){
+				frontRight.set(-.5);
+				backRight.set(-.5);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			} else if(position[1] > .3){
+				frontRight.set(-.2);
+				backRight.set(-.2);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			} else if(position[1] > .1){
+				frontRight.set(-.1);
+				backRight.set(-.1);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			} else if(position[1] > -.1){
+				frontRight.set(.0);
+				backRight.set(.0);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", true);
+			} else if(position[1] > -.3){
+				frontRight.set(.1);
+				backRight.set(.1);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			} else if(position[1] > -.5){
+				frontRight.set(.2);
+				backRight.set(.2);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			} else if(position[1] <= -.5){
+				frontRight.set(.5);
+				backRight.set(.5);
+				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
+			}
 
 	}
 }

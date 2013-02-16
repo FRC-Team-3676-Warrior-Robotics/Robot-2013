@@ -12,7 +12,7 @@ import net.aisd.martin.frc.imageprocessing.ImageProcessing;
  * @author Neil
  */
 //For more info compare the subsystem class provided by FRC with ours
-public class Subsystems2013 {
+public class Subsystems {
     //Variables that holds all of our subsystems
     //None beyond the basics because we don't have a robot
 	public static Pneumatics pneumatics;
@@ -23,25 +23,27 @@ public class Subsystems2013 {
 	public static PClimber climber;
     public static Cameras camera;
 	public static SmartDash smartDash;
+	public static ImageProcessing IP;
     /*
      * This instantiates all the robots subsystems. Will probably be called in the
      * robot main's constuctor
      */
     public static void init() {
 		pneumatics = new Pneumatics();
-		controller1 = new Controller(RobotMap2013.Input.joystick1);
-        controller2 = new Controller(RobotMap2013.Input.joystick2);
-		driveTrain = new DriveTrain(RobotMap2013.DriveMotors.slot,
-									RobotMap2013.DriveMotors.left_front,
-									RobotMap2013.DriveMotors.right_front,
-                                    RobotMap2013.DriveMotors.left_back,
-                                    RobotMap2013.DriveMotors.right_back,
+		controller1 = new Controller(RobotMap.Input.joystick1);
+        controller2 = new Controller(RobotMap.Input.joystick2);
+		driveTrain = new DriveTrain(RobotMap.DriveMotors.slot,
+									RobotMap.DriveMotors.left_front,
+									RobotMap.DriveMotors.right_front,
+                                    RobotMap.DriveMotors.left_back,
+                                    RobotMap.DriveMotors.right_back,
 									controller1);
 		
-		shooter = new Shooter(RobotMap2013.Shooter.motor_slot, RobotMap2013.Shooter.front, RobotMap2013.Shooter.back,
-							  RobotMap2013.Shooter.pnuematics_slot, RobotMap2013.Shooter.piston_forward, RobotMap2013.Shooter.piston_backwards);
-		climber = new PClimber(RobotMap2013.PClimber.pnuematics_slot, RobotMap2013.PClimber.cpiston_forward, RobotMap2013.PClimber.cpiston_backwards);
-		camera = new Cameras(RobotMap2013.Camera.slot, RobotMap2013.Camera.Yaxis, RobotMap2013.Camera.Xaxis, RobotMap2013.Camera.light);
+		shooter = new Shooter(RobotMap.Shooter.motor_slot, RobotMap.Shooter.front, RobotMap.Shooter.back,
+							  RobotMap.Shooter.pnuematics_slot, RobotMap.Shooter.piston_forward, RobotMap.Shooter.piston_backwards);
+		climber = new PClimber(RobotMap.PClimber.pnuematics_slot, RobotMap.PClimber.cpiston_forward, RobotMap.PClimber.cpiston_backwards);
+		camera = new Cameras(RobotMap.Camera.slot, RobotMap.Camera.Yaxis, RobotMap.Camera.Xaxis, RobotMap.Camera.light);
 		smartDash = new SmartDash();
+		IP = new ImageProcessing();
     }
 }

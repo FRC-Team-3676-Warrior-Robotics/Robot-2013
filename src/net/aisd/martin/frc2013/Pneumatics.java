@@ -18,8 +18,8 @@ public class Pneumatics {
 	 * I dont see us using another one but just write it if you need it
 	 */
 	public Pneumatics(){
-		this.compressor = new AISDCompressor(RobotMap2013.Pneumatics.slot, RobotMap2013.Pneumatics.pressure_switch,
-											 RobotMap2013.Pneumatics.slot, RobotMap2013.Pneumatics.compressor);
+		this.compressor = new AISDCompressor(RobotMap.Pneumatics.slot, RobotMap.Pneumatics.pressure_switch,
+											 RobotMap.Pneumatics.slot, RobotMap.Pneumatics.compressor);
                 
 		//Put any other hardware here
 	}
