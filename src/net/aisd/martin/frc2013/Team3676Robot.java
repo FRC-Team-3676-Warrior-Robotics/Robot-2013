@@ -5,6 +5,7 @@
 package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.SimpleRobot;
+import edu.wpi.first.wpilibj.Watchdog;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import net.aisd.martin.frc2013.Subsystems;
 
@@ -27,10 +28,15 @@ public class Team3676Robot extends SimpleRobot {
      * This is the robot's initialization
      * Instantiates any objects that will be used by the robot here
      */
+    private double readyTime;
+    private int counter;
+    private double turnTime;
+    private double forwardTime;
+    private double endTime;
     public void robotInit(){
 		Subsystems.init();
 		Subsystems.pneumatics.compressor.start();
-        
+                Watchdog.getInstance().setExpiration(.5);
     }
 	
 	/*
@@ -44,9 +50,22 @@ public class Team3676Robot extends SimpleRobot {
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
+        readyTime = System.currentTimeMillis() + 3000;
+        turnTime = System.currentTimeMillis() + 8000;
+        forwardTime = System.currentTimeMillis() + 9000;
+        endTime = System.currentTimeMillis() + 9000;
+        counter = 3;
         while(isAutonomous() && isEnabled()){
-			//TODO: Once we need a routine we will put it here
-		}
+            Subsystems.pneumatics.tick();
+            if(System.currentTimeMillis() < turnTime)
+                autoShoot();
+            if(System.currentTimeMillis() > turnTime && System.currentTimeMillis() < forwardTime){
+                Subsystems.driveTrain.tick(0, -.7, false);
+            } else {
+                Subsystems.driveTrain.tick(0, 0, false);
+            }
+                
+	}
     }
 
     /**
@@ -55,7 +74,7 @@ public class Team3676Robot extends SimpleRobot {
     public void operatorControl() {
 		while(isOperatorControl() && isEnabled()){
 			
-			if(Subsystems.controller1.getDPadUp()){
+			if(Subsystems.controller1.getStartButton()){
 				Subsystems.IP.GetTargets();
 				Subsystems.driveTrain.autoTick(Subsystems.IP.trackCenterTarget());
 			}
@@ -78,6 +97,16 @@ public class Team3676Robot extends SimpleRobot {
 			Subsystems.smartDash.tick(Subsystems.controller1.getDPadDown(), "SUP");
 		}
 	}
+    
+    public void autoShoot(){
+        if(counter > 0)
+            Subsystems.shooter.think(false, false, false, true, false);
+        if(counter > 0 && System.currentTimeMillis() > readyTime){
+            if(Subsystems.shooter.shoot())
+                counter--;
+        }
+    }
+    
 	
 }
 

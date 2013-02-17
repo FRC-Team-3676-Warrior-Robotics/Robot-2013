@@ -17,7 +17,7 @@ public class Shooter {
         private Talon back;
         private DoubleSolenoid loader;
         private long readyTime= 0;
-        private final static long reload_time = 2 * 1000;
+        private final static long reload_time = 1 * 1000;
         
         public Shooter(int slot, int front, int back, 
                 int pneumaticsSlot, int pistonF, int pistonB) {
@@ -27,15 +27,20 @@ public class Shooter {
             readyTime = 0;
         }
         
-        private void shoot(){
+        public boolean shoot(){
             if(System.currentTimeMillis() < readyTime)
-                return;
+                return false;
             readyTime = System.currentTimeMillis() + reload_time;
             loader.set(DoubleSolenoid.Value.kReverse);
+            return true;
         }
         
+        public void spinUp(){
+            front.set(-1);
+            back.set(-1);
+        }
         public void think(boolean quarter, boolean half, boolean most, boolean full, boolean fire){
-            if(System.currentTimeMillis() > readyTime - 1 * 1000)
+            if(System.currentTimeMillis() > readyTime - .5 * 1000)
                 loader.set(DoubleSolenoid.Value.kForward);
             
             if(quarter) {

@@ -53,8 +53,8 @@ public final class RobotMap {
         public static final int left_front = 1;
         public static final int right_front = 2;
         //Use these motors if we use more than two
-        public static final int left_back = 3;
-        public static final int right_back = 4;
+        public static final int left_back = UNUSED;
+        public static final int right_back = UNUSED;
     }
     
     /*
@@ -94,7 +94,7 @@ public final class RobotMap {
         public static final int slot = 1;
         public static final int Yaxis = 7;
         public static final int Xaxis = 8;
-        public static final int light = 9;
+        public static final int light = 2;
     }
     
     

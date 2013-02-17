@@ -22,9 +22,6 @@ public class DriveTrain {
 	//These are our speed controllers. Will change what they equal when we need to move
 	private Victor frontLeft;
 	private Victor frontRight;
-        private Victor backLeft;
-        private Victor backRight;
-	private Controller controller;
 	
 	/**
 	 * Creates a two wheel drive train
@@ -36,13 +33,9 @@ public class DriveTrain {
 	 * This class and its constructor will be updated frequently! Please label 
 	 * what you change and why!!!
 	 */
-	public DriveTrain(int slot, int frontLeft, int frontRight, int backLeft, int backRight, Controller controller){
+	public DriveTrain(int slot, int frontLeft, int frontRight){
 		this.frontLeft = new Victor(slot, frontLeft);
 		this.frontRight = new Victor(slot, frontRight);
-                this.backLeft = new Victor(slot, backLeft);
-                this.backRight = new Victor(slot, backRight);
-		
-		this.controller = controller;
 	}
 	
 	/*
@@ -70,8 +63,8 @@ public class DriveTrain {
 		 * Borrowed this code from FRC. We don't need to customize it yet or 
 		 * hopefully ever cause I'm pretty sure it works with black magic
 		 */
-		double left = forward + rotation;
-                double right = forward - rotation;
+		double right = forward + rotation;
+                double left = forward - rotation;
                 left = Math.max(left, -1);
                 right = Math.max(right, -1);
                 left = Math.min(left, 1);
@@ -80,42 +73,32 @@ public class DriveTrain {
                     left *= .5;
                     right *= .5;
                 }
-                left *= .8;
                 frontLeft.set(left);
-                backLeft.set(left);
                 frontRight.set(right);
-                backRight.set(right);
 	}
         
         public void autoTick(double[] position){
 			//First aligns the x axis then aligns distance
 			if(position[1] > .5){
 				frontRight.set(-.5);
-				backRight.set(-.5);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			} else if(position[1] > .3){
 				frontRight.set(-.2);
-				backRight.set(-.2);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			} else if(position[1] > .1){
 				frontRight.set(-.1);
-				backRight.set(-.1);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			} else if(position[1] > -.1){
 				frontRight.set(.0);
-				backRight.set(.0);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", true);
 			} else if(position[1] > -.3){
 				frontRight.set(.1);
-				backRight.set(.1);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			} else if(position[1] > -.5){
 				frontRight.set(.2);
-				backRight.set(.2);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			} else if(position[1] <= -.5){
 				frontRight.set(.5);
-				backRight.set(.5);
 				NetworkTable.getTable("SmartDash").putBoolean("X-axis", false);
 			}
 

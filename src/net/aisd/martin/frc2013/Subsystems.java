@@ -34,10 +34,7 @@ public class Subsystems {
         controller2 = new Controller(RobotMap.Input.joystick2);
 		driveTrain = new DriveTrain(RobotMap.DriveMotors.slot,
 									RobotMap.DriveMotors.left_front,
-									RobotMap.DriveMotors.right_front,
-                                    RobotMap.DriveMotors.left_back,
-                                    RobotMap.DriveMotors.right_back,
-									controller1);
+									RobotMap.DriveMotors.right_front);
 		
 		shooter = new Shooter(RobotMap.Shooter.motor_slot, RobotMap.Shooter.front, RobotMap.Shooter.back,
 							  RobotMap.Shooter.pnuematics_slot, RobotMap.Shooter.piston_forward, RobotMap.Shooter.piston_backwards);
