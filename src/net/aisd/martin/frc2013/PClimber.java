@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,29 +6,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
- * @author Developer
+ * @author Hadi
  */
-public class PClimber{
-    private DoubleSolenoid climbPiston;
+public class PClimber {
 
+	private DoubleSolenoid climbPiston;
 
-    public PClimber(int pneumaticsSlot, int pistonF, int pistonB)
-    {
-        this.climbPiston = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
-    }
+	public PClimber(int pneumaticsSlot, int pistonF, int pistonB) {
+		this.climbPiston = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
+	}
 
-    public void extend(){
-                climbPiston.set(DoubleSolenoid.Value.kForward);
-    }
+	public void extend() {
+		climbPiston.set(DoubleSolenoid.Value.kForward);
+	}
 
-    public void retract(){
-        climbPiston.set(DoubleSolenoid.Value.kReverse);
-    }
+	public void retract() {
+		climbPiston.set(DoubleSolenoid.Value.kReverse);
+	}
 
-    public void think(boolean extend){
-        if(extend)
-            extend();
-        else
-            retract();
-    }
+	public void think(boolean extend) {
+		if (extend) {
+			extend();
+		} else {
+			retract();
+		}
+	}
 }
