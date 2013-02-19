@@ -40,7 +40,7 @@ public class Subsystems {
 				RobotMap.DriveMotors.right_front);
 
 		shooter = new Shooter(RobotMap.Shooter.motor_slot, RobotMap.Shooter.front, RobotMap.Shooter.back,
-				RobotMap.Shooter.pnuematics_slot, RobotMap.Shooter.piston_forward, RobotMap.Shooter.piston_backwards);
+				RobotMap.Shooter.pnuematics_slot, RobotMap.Shooter.piston_forward, RobotMap.Shooter.piston_backwards, RobotMap.Shooter.ejection_piston);
 		climber = new PClimber(RobotMap.PClimber.pnuematics_slot, RobotMap.PClimber.cpiston_forward, RobotMap.PClimber.cpiston_backwards);
 		camera = new Cameras(RobotMap.Camera.slot, RobotMap.Camera.Yaxis, RobotMap.Camera.Xaxis, RobotMap.Camera.light);
 		smartDash = new SmartDash();

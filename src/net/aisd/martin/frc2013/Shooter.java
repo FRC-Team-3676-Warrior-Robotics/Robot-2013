@@ -1,6 +1,7 @@
 package net.aisd.martin.frc2013;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -14,15 +15,19 @@ public class Shooter {
 	private Talon front;
 	private Talon back;
 	private DoubleSolenoid loader;
+        private DoubleSolenoid ejection;
 	private long readyTime = 0;
+        private long ejectTime = 0;
 	private final static long reload_time = 1 * 1000;
 
 	public Shooter(int slot, int front, int back,
-			int pneumaticsSlot, int pistonF, int pistonB) {
+			int pneumaticsSlot, int pistonF, int pistonB,
+                        int eject) {
 		this.front = new Talon(slot, front);
 		this.back = new Talon(slot, back);
 		this.loader = new DoubleSolenoid(pneumaticsSlot, pistonB, pistonF);
-		readyTime = 0;
+                this.ejection = new DoubleSolenoid(pneumaticsSlot, 7, eject);
+                readyTime = 0;
 	}
 
 	public boolean shoot() {
@@ -39,10 +44,14 @@ public class Shooter {
 		back.set(-1);
 	}
 
-	public void think(boolean quarter, boolean half, boolean most, boolean full, boolean fire) {
-		if (System.currentTimeMillis() > readyTime - .5 * 1000) {
+	public void think(boolean quarter, boolean half, boolean most, boolean full, boolean fire, boolean eject) {
+            //resets all the pistsons
+            if (System.currentTimeMillis() > readyTime - .5 * 1000) {
 			loader.set(DoubleSolenoid.Value.kForward);
-		}
+            }
+            if (System.currentTimeMillis() > ejectTime + reload_time){
+                ejection.set(DoubleSolenoid.Value.kReverse);
+            }
 
 		if (quarter) {
 			front.set(-.25);
@@ -64,6 +73,11 @@ public class Shooter {
 		if (fire) {
 			shoot();
 		}
+                
+                if(eject){
+                    ejection.set(DoubleSolenoid.Value.kForward);
+                    ejectTime = System.currentTimeMillis();
+                }
 
 		if (readyTime - System.currentTimeMillis() < 0) {
 			SmartDashboard.putBoolean("Ready to Fire", true);

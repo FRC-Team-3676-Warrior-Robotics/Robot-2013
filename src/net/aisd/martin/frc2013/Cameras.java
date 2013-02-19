@@ -19,7 +19,7 @@ public class Cameras {
 		this.light = true;
 	}
 
-	public void think(double up, double left, boolean lightOff) {
+	public void think(boolean lightOff) {
 
 		//Conrols light
 		//Allows you to hold button as long as needed
@@ -37,6 +37,7 @@ public class Cameras {
 			} else {
 				light = !light;
 			}
+                        pressed = false;
 		}
 	}
 }

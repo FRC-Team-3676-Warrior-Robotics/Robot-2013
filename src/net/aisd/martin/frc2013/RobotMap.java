@@ -64,6 +64,7 @@ public final class RobotMap {
 		public static final int motor_slot = 1;
 		public static final int piston_forward = 1;
 		public static final int piston_backwards = 2;
+                public static final int ejection_piston = 5;
 		public static final int front = 5;
 		public static final int back = 6;
 	}

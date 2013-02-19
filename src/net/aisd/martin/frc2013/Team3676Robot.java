@@ -71,24 +71,22 @@ public class Team3676Robot extends SimpleRobot {
 					Subsystems.controller1.getLeftAxisButton());
 
 			Subsystems.pneumatics.tick();
-
 			Subsystems.shooter.think(Subsystems.controller1.getAButton(), Subsystems.controller1.getBButton(),
 					Subsystems.controller1.getXButton(), Subsystems.controller1.getYButton(),
-					Subsystems.controller1.getRightBumper());
+					Subsystems.controller1.getRightBumper(), Subsystems.controller1.getRightAxisButton());
 
 			Subsystems.climber.think(Subsystems.controller1.getLeftBumper());
 
-			Subsystems.camera.think(Subsystems.controller1.getRightYAxis(), Subsystems.controller1.getRightXAxis(),
-					Subsystems.controller1.getStartButton());
+			Subsystems.camera.think(Subsystems.controller1.getStartButton());
 
-			Subsystems.smartDash.tick(Subsystems.controller1.getDPadDown(), "SUP");
+			Subsystems.smartDash.tick(Subsystems.controller1.getSelectButton(), "SUP");
 		}
 	}
 	//autonomous routines and helper methods
 
 	public void autoShoot() {
 		if (counter > 0) {
-			Subsystems.shooter.think(false, false, false, true, false);
+			Subsystems.shooter.think(false, false, false, true, false, false);
 		}
 		if (counter > 0 && System.currentTimeMillis() > readyTime) {
 			if (Subsystems.shooter.shoot()) {
